@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, Variants } from 'framer-motion';
 import { 
-  ArrowRight, Activity, Shield, MapPin, CheckCircle2, 
+  ArrowRight, Activity, Shield, MapPin, 
   ChevronDown, ChevronUp, Github 
 } from 'lucide-react';
 import Link from 'next/link';
 
-// --- ANIMATION VARIANTS (The "Rolling" Effect) ---
-const fadeInUp = {
+// --- ANIMATION VARIANTS (Fixed Types) ---
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 60 },
   visible: { 
     opacity: 1, 
@@ -18,12 +18,12 @@ const fadeInUp = {
   }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // Delays each child by 0.2s
+      staggerChildren: 0.2,
       delayChildren: 0.1
     }
   }
@@ -290,7 +290,7 @@ function DashboardStat({ val, label, color, sub }: any) {
 
 function ProductCard({ title, desc, icon }: { title: string, desc: string, icon: any }) {
     // Note: The parent container handles the stagger, but we add variants here to respond to it
-    const cardVariants = {
+    const cardVariants: Variants = {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
     };
