@@ -8,13 +8,13 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-// --- ANIMATION VARIANTS (Fixed Types) ---
+// --- ANIMATION VARIANTS (Simpler version to fix Build Error) ---
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 60 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.6, ease: "easeOut" } 
+    transition: { duration: 0.6 } // Removed 'ease' to fix strict type error
   }
 };
 
@@ -145,7 +145,7 @@ export default function Home() {
             <motion.div 
                 initial={{ opacity: 0, x: 50 }}
                 animate={!isLoading ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                transition={{ duration: 1, delay: 0.5 }}
                 className="relative"
             >
                 <div className="bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500">
@@ -289,7 +289,6 @@ function DashboardStat({ val, label, color, sub }: any) {
 }
 
 function ProductCard({ title, desc, icon }: { title: string, desc: string, icon: any }) {
-    // Note: The parent container handles the stagger, but we add variants here to respond to it
     const cardVariants: Variants = {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
